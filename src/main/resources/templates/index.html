@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Pizzeria da Aldo</title>
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+	
+</head>
+<body>
+	
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+	
+	
+	<div class="container">
+		
+		<main class="mt-5 text-center">
+			
+			<h1>Le pizze:</h1>
+			
+			
+			<h3 class="mt-5" th:if="${pizzas} == null">Non ci sono pizze nella lista :( </h3>
+			
+					
+			<table class="table mt-5">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Nome</th>
+			      <th scope="col">Descrizione</th>
+			      <th scope="col">Prezzo</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="pizza : ${pizzas}">
+			      <th scope="row" th:text="${pizza.id}"></th>
+			      <td scope="row" th:text="${pizza.nome}"></th>
+			      <td scope="row" th:text="${pizza.descrizione}"></td>
+			      <td scope="row" th:text="${pizza.price} + €"></td>
+			    </tr>
+			  </tbody>
+			</table>
+		
+		</main>
+	</div>
+	
+</body>
+</html>
