@@ -1,9 +1,14 @@
 package org.java.spring.pojo;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 
 @Entity
@@ -14,9 +19,14 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NotNull
+	@Length(min = 3, max = 40, message = "Il nome deve essere compreso tra i 3 e i 40 caratteri")
 	private String nome;
+	
 	private String descrizione;
 	private String url;
+	
+	@NotNull
 	private double price;
 	
 	
