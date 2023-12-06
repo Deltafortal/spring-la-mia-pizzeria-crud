@@ -60,7 +60,7 @@ public class MainController {
 		
 		model.addAttribute("pizza", pizza);
 		
-		return "pizza-create";
+		return "pizza-form";
 		
 	}
 	
@@ -69,21 +69,53 @@ public class MainController {
 	@PostMapping("/pizza/create")
 	public String storePizza(Model model, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult ) {
 		
+		return savePizza(model, pizza, bindingResult);
+		
+	}
+	
+	
+	@GetMapping("/pizza/edit/{id}")
+	public String editPizza(Model model, @PathVariable int id) {
+		
+		Pizza pizza = pizzaService.findById(id);
+		model.addAttribute("pizza", pizza);
+		
+		return "pizza-form";
+	}
+	
+	
+	@PostMapping("/pizza/edit/{id}")
+	public String updatePizza(Model model, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult) {
+		
+		
+		return savePizza(model, pizza, bindingResult);
+	}
+	
+	
+	@PostMapping("/pizza/delete/{id}")
+	public String deletePizza (@PathVariable int id) {
+		
+		Pizza pizza = pizzaService.findById(id);
+		pizzaService.delete(pizza);
+		
+		return "redirect:/";
+	}
+	
+	
+	
+	//Functions
+	public String savePizza(Model model, @ModelAttribute Pizza pizza, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
 			
-			
 			model.addAttribute("pizza", pizza);
-			return "pizza-create";
+			return "pizza-form";
 			
 		} else {
 			
 			pizzaService.save(pizza);
 			return "redirect:/";
 		}
-		
-		
-		
 	}
 	
 }

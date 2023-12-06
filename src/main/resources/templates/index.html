@@ -56,8 +56,12 @@
 			      <td scope="row" th:text="${pizza.nome}"></th>
 			      <td scope="row" th:text="${pizza.descrizione}"></td>
 			      <td scope="row" th:text="${pizza.price} + €"></td>
-			      <td scope="row" >
-					  <a th:href="@{/pizza/{id}(id=${pizza.id})}" class="btn btn-primary">Dettagli</a>
+			      <td scope="row" class="d-flex align-items-center">
+					  <a th:href="@{/pizza/{id}(id=${pizza.id})}" class="btn btn-primary me-3">Dettagli</a>
+					  <a th:href="@{/pizza/edit/{id} (id=${pizza.id})}" class="btn btn-success me-3">Modifica</a>
+					  <form th:action="@{/pizza/delete/{id} (id=${pizza.id})}" method="POST">
+					  	<input type="submit" value="Cancella" class="btn btn-danger"></input>					  
+					  </form>
 				  </td>
 			    </tr>
 			  </tbody>

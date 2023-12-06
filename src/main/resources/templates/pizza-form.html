@@ -18,7 +18,12 @@
 	<div class="container text-center">
 		
 		
-		<form class="mt-5" id="pizza-form" th:action="@{/pizza/create}" method="post" th:object="${pizza}">
+		<form class="mt-5" id="pizza-form" method="POST" th:object="${pizza}"> 
+			<!-- 
+				!NOTA th:action="@{/pizza/create}" Eliminata così Java controlla gli id e capisce da solo 
+				se mandare la create o update 
+				Ricordarsi che devono avere lo stesso nome.
+				-->
 			<div class="row">
 				<div class="col-4">
 					<label for="pizza-name" class="form-label">Nome</label>
@@ -55,7 +60,7 @@
 			
 			<div class="row">
 				<div class="col-12 mt-4">
-				 	<button type="submit" class="btn btn-success">Crea</button>					
+				 	<button type="submit" class="btn btn-success" value="STORE">Invia</button>					
 				</div>
 			</div>
 		</form>
